@@ -81,6 +81,7 @@ public class Lab2P1Driver {
                     break;
                 case 4:
                     myList.removeAll();
+                    System.out.println();
                     break;
                 case 5:
                     printList(myList);
@@ -105,9 +106,9 @@ public class Lab2P1Driver {
      */
     private static void printList(ListArrayBasedPlus list) {
         if(list == null || list.size() == 0)
-            System.out.println("List is empty.\n");
+            System.out.println("\tList is empty.\n");
         else
-            System.out.printf("List of size %d has the following items: %s%n%n", 
+            System.out.printf("\tList of size %d has the following items: %s%n%n", 
             list.size(), list.toString());
     }
 
