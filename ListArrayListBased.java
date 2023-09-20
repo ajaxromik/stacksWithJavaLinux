@@ -43,8 +43,4 @@ public class ListArrayListBased implements ListInterface{
         items = new ArrayList<Object>();
     }
 
-    public String toString() {
-        return items.toString();
-    }
-
 }
