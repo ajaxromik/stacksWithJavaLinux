@@ -55,7 +55,7 @@ public class Lab2P1Driver {
                     " position %d in the list.%n%n", itemName, position);
                     }
                     break;
-                case 2: //TODO
+                case 2:
                     System.out.print("\tEnter position to remove item from: ");
                     position = Integer.parseInt(stdin.readLine().trim());
                     System.out.println(position);
@@ -67,7 +67,7 @@ public class Lab2P1Driver {
                     " position %d in the list.%n%n", returned.toString(), position);
                     }
                     break;
-                case 3: //TODO
+                case 3:
                     System.out.print("\tEnter position to retrieve item from: ");
                     position = Integer.parseInt(stdin.readLine().trim());
                     System.out.println(position);
