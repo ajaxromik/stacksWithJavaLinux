@@ -38,22 +38,22 @@ public class Lab2ECDriver {
 
             switch(selection) {
             case 1:
-                Lab2P1Driver.addToList(myList);
+                addToList(myList);
                 break;
             case 2:
-                Lab2P1Driver.removeFromList(myList);
+                removeFromList(myList);
                 break;
             case 3:
-                Lab2P1Driver.getFromList(myList);
+                getFromList(myList);
                 break;
             case 4:
-                Lab2P1Driver.emptyList(myList);
+                emptyList(myList);
                 break;
             case 5:
-                Lab2P1Driver.printList(myList);
+                printList(myList);
                 break;
             case 6:
-                Lab2P1Driver.reverseList(myList);
+                reverseList(myList);
                 break;
             default: // continuing unless told to stop
                 continuing = false;
@@ -63,6 +63,70 @@ public class Lab2ECDriver {
 
         } while(continuing);
 
+    }
+
+    public static void addToList(ListInterface list) throws IOException{
+        System.out.print("You are now inserting an item"+
+                         " into the list.\n\tEnter item: ");
+        String itemName = stdin.readLine().trim();
+        System.out.println(itemName);
+
+        System.out.print("\tEnter position to insert item in: ");
+        int position = Integer.parseInt(stdin.readLine().trim());
+        System.out.println(position);
+        if(position < 0 || position > list.size())
+            System.out.println("Position specified is out of range!\n");
+        else {
+            list.add(position, itemName);
+            System.out.printf("Item %s inserted into"+
+                              " position %d in the list.%n%n", itemName, position);
+        }
+    }
+
+    public static void removeFromList(ListInterface list) throws IOException{
+        System.out.print("\tEnter position to remove item from: ");
+        int position = Integer.parseInt(stdin.readLine().trim());
+        System.out.println(position);
+        if(position < 0 || position >= list.size())
+            System.out.println("Position specified is out of range!\n");
+        else {
+            System.out.printf("Item %s removed from"+
+                                " position %d in the list.%n%n", list.remove(position).toString(), position);
+        }
+    }
+
+    public static void getFromList(ListInterface list) throws IOException{
+        System.out.print("\tEnter position to retrieve item from: ");
+        int position = Integer.parseInt(stdin.readLine().trim());
+        System.out.println(position);
+        if(position < 0 || position >= list.size())
+            System.out.println("Position specified is out of range!\n");
+        else {
+            System.out.printf("Item %s retrieved from"+
+                              " position %d in the list.%n%n", list.get(position).toString(), position);
+        }
+    }
+
+    public static void emptyList(ListInterface list) {
+        list.removeAll();
+        System.out.println();
+    }
+
+    /**
+     * Prints list after checking for null/empty
+     * @param list
+     */
+    public static void printList(ListInterface list) {
+        if(list == null || list.size() == 0)
+            System.out.println("\tList is empty.\n");
+        else
+            System.out.printf("\tList of size %d has the following items: %s%n%n",
+                              list.size(), list.toString());
+    }
+
+    public static void reverseList(ListArrayBasedPlus list) {
+        list.reverse();
+        System.out.println("List reversed\n");
     }
 
 }
