@@ -50,7 +50,7 @@ public class ListArrayBasedPlus extends ListArrayBased {
                 tempItems[i] = items[i];
             }
             //after transferring data to items, move it into items
-            items = tempItems;
+            items = tempItems; 
         }
     }
 }

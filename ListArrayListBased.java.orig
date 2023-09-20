@@ -11,7 +11,7 @@ import java.util.ArrayList;
  * @version: 2023.09.19
  */
 
-public class ListArrayListBased implements ListInterface {
+public class ListArrayListBased implements ListInterface{
 
     protected ArrayList<Object> items;
 
