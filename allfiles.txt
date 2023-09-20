@@ -1,0 +1,732 @@
+::::::::::::::
+Lab2Status.txt
+::::::::::::::
+Problem 1: compiles, runs correctly on all provided input
+Problem 2: compiles, runs correctly on all provided input
+Problem 3: Completed and attached in ListInterfaceRelatedArrayListCode
+Problem 4: Complete
+Extra Credit: Complete::::::::::::::
+Lab2Conclusions.txt
+::::::::::::::
+I learned about more efficient ways to deal with collections.
+I also felt like I learned what the behing-the-scenes of collections looks like.
+I did not exactly expect to hold the variable numItems, but it
+was still valuable to really see it all in action.
+I also learned that whoever wrote ArrayList has a very, 
+very different coding style from me.
+
+Doing the Extra Credit made me realize that System.arraycopy is fast,
+although the parameters were a little confusing at first.::::::::::::::
+Lab2P1Driver.java
+::::::::::::::
+import java.io.*;
+
+/*
+ * Purpose: Data Structure and Algorithms Lab 2 Problem 1
+ * Status: Complete and thoroughly tested
+ * Last update: 09/19/22
+ * Submitted:  09/19/22
+ * Comment: test suite and sample run attached
+ * Comment: I declare that this is entirely my own work
+ * @author: William Carr
+ * @version: 2023.09.19
+ */
+
+public class Lab2P1Driver {
+
+    public static void main(String[] args) throws NumberFormatException, IOException {
+
+        BufferedReader stdin = new BufferedReader(new InputStreamReader(System.in));
+        ListArrayBasedPlus myList = new ListArrayBasedPlus();
+
+        System.out.println("Select from the following menu:\n"
+                           +"\t0. Exit program\n"
+                           +"\t1. Insert item into the list\n"
+                           +"\t2. Remove item from the list\n"
+                           +"\t3. Get item from the list\n"
+                           +"\t4. Clear the list\n"
+                           +"\t5. Print size and content of the list\n"
+                           +"\t6. Reverse the list\n");
+
+        int selection, position;
+        boolean continuing = true;
+        String itemName;
+        Object returned;
+        do {
+
+            System.out.print("Make your menu selection now: ");
+            selection = Integer.parseInt(stdin.readLine().trim());
+            System.out.println(selection);
+
+            switch(selection) {
+            case 1:
+                System.out.print("You are now inserting an item"+
+                                 " into the list.\n\tEnter item: ");
+                itemName = stdin.readLine().trim();
+                System.out.println(itemName);
+
+                System.out.print("\tEnter position to insert item in: ");
+                position = Integer.parseInt(stdin.readLine().trim());
+                System.out.println(position);
+                if(position < 0 || position > myList.size())
+                    System.out.println("Position specified is out of range!\n");
+                else {
+                    myList.add(position, itemName);
+                    System.out.printf("Item %s inserted into"+
+                                      " position %d in the list.%n%n", itemName, position);
+                }
+                break;
+            case 2:
+                System.out.print("\tEnter position to remove item from: ");
+                position = Integer.parseInt(stdin.readLine().trim());
+                System.out.println(position);
+                if(position < 0 || position >= myList.size())
+                    System.out.println("Position specified is out of range!\n");
+                else {
+                    returned = myList.remove(position);
+                    System.out.printf("Item %s removed from"+
+                                      " position %d in the list.%n%n", returned.toString(), position);
+                }
+                break;
+            case 3:
+                System.out.print("\tEnter position to retrieve item from: ");
+                position = Integer.parseInt(stdin.readLine().trim());
+                System.out.println(position);
+                if(position < 0 || position >= myList.size())
+                    System.out.println("Position specified is out of range!\n");
+                else {
+                    returned = myList.get(position);
+                    System.out.printf("Item %s retrieved from"+
+                                      " position %d in the list.%n%n", returned.toString(), position);
+                }
+                break;
+            case 4:
+                myList.removeAll();
+                System.out.println();
+                break;
+            case 5:
+                printList(myList);
+                break;
+            case 6:
+                myList.reverse();
+                System.out.println("List reversed\n");
+                break;
+            default: // continuing unless told to stop
+                continuing = false;
+                System.out.println("Exiting program... Goodbye!");
+                break;
+            }
+
+        } while(continuing);
+
+    }
+
+    /**
+     * Prints list after checking for null/empty
+     * @param list
+     */
+    private static void printList(ListArrayBasedPlus list) {
+        if(list == null || list.size() == 0)
+            System.out.println("\tList is empty.\n");
+        else
+            System.out.printf("\tList of size %d has the following items: %s%n%n",
+                              list.size(), list.toString());
+    }
+
+}::::::::::::::
+Lab2P1Sampleruns.txt
+::::::::::::::
+Select from the following menu:
+	0. Exit program
+	1. Insert item into the list
+	2. Remove item from the list
+	3. Get item from the list
+	4. Clear the list
+	5. Print size and content of the list
+	6. Reverse the list
+
+Make your menu selection now: 5
+	List is empty.
+
+Make your menu selection now: 1
+You are now inserting an item into the list.
+	Enter item: Data
+	Enter position to insert item in: 0
+Item Data inserted into position 0 in the list.
+
+Make your menu selection now: 5
+	List of size 1 has the following items: Data
+
+Make your menu selection now: 1
+You are now inserting an item into the list.
+	Enter item: Beverly
+	Enter position to insert item in: 0
+Item Beverly inserted into position 0 in the list.
+
+Make your menu selection now: 5
+	List of size 2 has the following items: Beverly Data
+
+Make your menu selection now: 1
+You are now inserting an item into the list.
+	Enter item: Jean-Luc
+	Enter position to insert item in: 4
+Position specified is out of range!
+
+Make your menu selection now: 5
+	List of size 2 has the following items: Beverly Data
+
+Make your menu selection now: 1
+You are now inserting an item into the list.
+	Enter item: Jean-Luc
+	Enter position to insert item in: 2
+Item Jean-Luc inserted into position 2 in the list.
+
+Make your menu selection now: 1
+You are now inserting an item into the list.
+	Enter item: Geordi
+	Enter position to insert item in: 1
+Item Geordi inserted into position 1 in the list.
+
+Make your menu selection now: 1
+You are now inserting an item into the list.
+	Enter item: Worf
+	Enter position to insert item in: 3
+Item Worf inserted into position 3 in the list.
+
+Make your menu selection now: 5
+	List of size 5 has the following items: Beverly Geordi Data Worf Jean-Luc
+
+Make your menu selection now: 6
+List reversed
+
+Make your menu selection now: 5
+	List of size 5 has the following items: Jean-Luc Worf Data Geordi Beverly
+
+Make your menu selection now: 2
+	Enter position to remove item from: 5
+Position specified is out of range!
+
+Make your menu selection now: 2
+	Enter position to remove item from: 3
+Item Geordi removed from position 3 in the list.
+
+Make your menu selection now: 5
+	List of size 4 has the following items: Jean-Luc Worf Data Beverly
+
+Make your menu selection now: 2
+	Enter position to remove item from: 0
+Item Jean-Luc removed from position 0 in the list.
+
+Make your menu selection now: 1
+You are now inserting an item into the list.
+	Enter item: Will
+	Enter position to insert item in: 1
+Item Will inserted into position 1 in the list.
+
+Make your menu selection now: 5
+	List of size 4 has the following items: Worf Will Data Beverly
+
+Make your menu selection now: 3
+	Enter position to retrieve item from: 2
+Item Data retrieved from position 2 in the list.
+
+Make your menu selection now: 3
+	Enter position to retrieve item from: 0
+Item Worf retrieved from position 0 in the list.
+
+Make your menu selection now: 3
+	Enter position to retrieve item from: 7
+Position specified is out of range!
+
+Make your menu selection now: 5
+	List of size 4 has the following items: Worf Will Data Beverly
+
+Make your menu selection now: 6
+List reversed
+
+Make your menu selection now: 5
+	List of size 4 has the following items: Beverly Data Will Worf
+
+Make your menu selection now: 4
+
+Make your menu selection now: 5
+	List is empty.
+
+Make your menu selection now: 0
+Exiting program... Goodbye!
+::::::::::::::
+Lab2P2Driver.java
+::::::::::::::
+import java.io.*;
+
+/*
+ * Purpose: Data Structure and Algorithms Lab 2 Problem 2
+ * Status: Complete and thoroughly tested
+ * Last update: 09/19/22
+ * Submitted:  09/19/22
+ * Comment: test suite and sample run attached
+ * Comment: I declare that this is entirely my own work
+ * @author: William Carr
+ * @version: 2023.09.19
+ */
+
+public class Lab2P2Driver {
+
+    public static void main(String[] args) throws NumberFormatException, IOException {
+
+        BufferedReader stdin = new BufferedReader(new InputStreamReader(System.in));
+        ListArrayListBasedPlus myList = new ListArrayListBasedPlus();
+
+        System.out.println("Select from the following menu:\n"
+                           +"\t0. Exit program\n"
+                           +"\t1. Insert item into the list\n"
+                           +"\t2. Remove item from the list\n"
+                           +"\t3. Get item from the list\n"
+                           +"\t4. Clear the list\n"
+                           +"\t5. Print size and content of the list\n"
+                           +"\t6. Reverse the list\n");
+
+        int selection, position;
+        boolean continuing = true;
+        String itemName;
+        Object returned;
+        do {
+
+            System.out.print("Make your menu selection now: ");
+            selection = Integer.parseInt(stdin.readLine().trim());
+            System.out.println(selection);
+
+            switch(selection) {
+            case 1:
+                System.out.print("You are now inserting an item"+
+                                 " into the list.\n\tEnter item: ");
+                itemName = stdin.readLine().trim();
+                System.out.println(itemName);
+
+                System.out.print("\tEnter position to insert item in: ");
+                position = Integer.parseInt(stdin.readLine().trim());
+                System.out.println(position);
+                if(position < 0 || position > myList.size())
+                    System.out.println("Position specified is out of range!\n");
+                else {
+                    myList.add(position, itemName);
+                    System.out.printf("Item %s inserted into"+
+                                      " position %d in the list.%n%n", itemName, position);
+                }
+                break;
+            case 2:
+                System.out.print("\tEnter position to remove item from: ");
+                position = Integer.parseInt(stdin.readLine().trim());
+                System.out.println(position);
+                if(position < 0 || position >= myList.size())
+                    System.out.println("Position specified is out of range!\n");
+                else {
+                    returned = myList.remove(position);
+                    System.out.printf("Item %s removed from"+
+                                      " position %d in the list.%n%n", returned.toString(), position);
+                }
+                break;
+            case 3:
+                System.out.print("\tEnter position to retrieve item from: ");
+                position = Integer.parseInt(stdin.readLine().trim());
+                System.out.println(position);
+                if(position < 0 || position >= myList.size())
+                    System.out.println("Position specified is out of range!\n");
+                else {
+                    returned = myList.get(position);
+                    System.out.printf("Item %s retrieved from"+
+                                      " position %d in the list.%n%n", returned.toString(), position);
+                }
+                break;
+            case 4:
+                myList.removeAll();
+                System.out.println();
+                break;
+            case 5:
+                printList(myList);
+                break;
+            case 6:
+                myList.reverse();
+                System.out.println("List reversed\n");
+                break;
+            default: // continuing unless told to stop
+                continuing = false;
+                System.out.println("Exiting program... Goodbye!");
+                break;
+            }
+
+        } while(continuing);
+
+    }
+
+    /**
+     * Prints list after checking for null/empty
+     * @param list
+     */
+    private static void printList(ListArrayListBasedPlus list) {
+        if(list == null || list.size() == 0)
+            System.out.println("\tList is empty.\n");
+        else
+            System.out.printf("\tList of size %d has the following items: %s%n%n",
+                              list.size(), list.toString());
+    }
+
+}::::::::::::::
+Lab2P2Sampleruns.txt
+::::::::::::::
+Select from the following menu:
+	0. Exit program
+	1. Insert item into the list
+	2. Remove item from the list
+	3. Get item from the list
+	4. Clear the list
+	5. Print size and content of the list
+	6. Reverse the list
+
+Make your menu selection now: 5
+	List is empty.
+
+Make your menu selection now: 1
+You are now inserting an item into the list.
+	Enter item: Data
+	Enter position to insert item in: 0
+Item Data inserted into position 0 in the list.
+
+Make your menu selection now: 5
+	List of size 1 has the following items: [Data]
+
+Make your menu selection now: 1
+You are now inserting an item into the list.
+	Enter item: Beverly
+	Enter position to insert item in: 0
+Item Beverly inserted into position 0 in the list.
+
+Make your menu selection now: 5
+	List of size 2 has the following items: [Beverly, Data]
+
+Make your menu selection now: 1
+You are now inserting an item into the list.
+	Enter item: Jean-Luc
+	Enter position to insert item in: 4
+Position specified is out of range!
+
+Make your menu selection now: 5
+	List of size 2 has the following items: [Beverly, Data]
+
+Make your menu selection now: 1
+You are now inserting an item into the list.
+	Enter item: Jean-Luc
+	Enter position to insert item in: 2
+Item Jean-Luc inserted into position 2 in the list.
+
+Make your menu selection now: 1
+You are now inserting an item into the list.
+	Enter item: Geordi
+	Enter position to insert item in: 1
+Item Geordi inserted into position 1 in the list.
+
+Make your menu selection now: 1
+You are now inserting an item into the list.
+	Enter item: Worf
+	Enter position to insert item in: 3
+Item Worf inserted into position 3 in the list.
+
+Make your menu selection now: 5
+	List of size 5 has the following items: [Beverly, Geordi, Data, Worf, Jean-Luc]
+
+Make your menu selection now: 6
+List reversed
+
+Make your menu selection now: 5
+	List of size 5 has the following items: [Jean-Luc, Worf, Data, Geordi, Beverly]
+
+Make your menu selection now: 2
+	Enter position to remove item from: 5
+Position specified is out of range!
+
+Make your menu selection now: 2
+	Enter position to remove item from: 3
+Item Geordi removed from position 3 in the list.
+
+Make your menu selection now: 5
+	List of size 4 has the following items: [Jean-Luc, Worf, Data, Beverly]
+
+Make your menu selection now: 2
+	Enter position to remove item from: 0
+Item Jean-Luc removed from position 0 in the list.
+
+Make your menu selection now: 1
+You are now inserting an item into the list.
+	Enter item: Will
+	Enter position to insert item in: 1
+Item Will inserted into position 1 in the list.
+
+Make your menu selection now: 5
+	List of size 4 has the following items: [Worf, Will, Data, Beverly]
+
+Make your menu selection now: 3
+	Enter position to retrieve item from: 2
+Item Data retrieved from position 2 in the list.
+
+Make your menu selection now: 3
+	Enter position to retrieve item from: 0
+Item Worf retrieved from position 0 in the list.
+
+Make your menu selection now: 3
+	Enter position to retrieve item from: 7
+Position specified is out of range!
+
+Make your menu selection now: 5
+	List of size 4 has the following items: [Worf, Will, Data, Beverly]
+
+Make your menu selection now: 6
+List reversed
+
+Make your menu selection now: 5
+	List of size 4 has the following items: [Beverly, Data, Will, Worf]
+
+Make your menu selection now: 4
+
+Make your menu selection now: 5
+	List is empty.
+
+Make your menu selection now: 0
+Exiting program... Goodbye!
+::::::::::::::
+Lab2ECDriver.java
+::::::::::::::
+import java.io.*;
+
+/*
+ * Purpose: Data Structure and Algorithms Lab 2 EC Extra Credit
+ * Status: Complete and thoroughly tested
+ * Last update: 09/19/22
+ * Submitted:  09/19/22
+ * Comment: test suite and sample run attached
+ * Comment: I declare that this is entirely my own work
+ * @author: William Carr
+ * @version: 2023.09.19
+ */
+
+public class Lab2ECDriver {
+
+    public static void main(String[] args) throws NumberFormatException, IOException {
+
+        BufferedReader stdin = new BufferedReader(new InputStreamReader(System.in));
+        ListArrayBasedPlus myList = new ListArrayBasedPlus();
+
+        System.out.println("Select from the following menu:\n"
+                           +"\t0. Exit program\n"
+                           +"\t1. Insert item into the list\n"
+                           +"\t2. Remove item from the list\n"
+                           +"\t3. Get item from the list\n"
+                           +"\t4. Clear the list\n"
+                           +"\t5. Print size and content of the list\n"
+                           +"\t6. Reverse the list\n");
+
+        int selection, position;
+        boolean continuing = true;
+        String itemName;
+        Object returned;
+        do {
+
+            System.out.print("Make your menu selection now: ");
+            selection = Integer.parseInt(stdin.readLine().trim());
+            System.out.println(selection);
+
+            switch(selection) {
+            case 1:
+                System.out.print("You are now inserting an item"+
+                                 " into the list.\n\tEnter item: ");
+                itemName = stdin.readLine().trim();
+                System.out.println(itemName);
+
+                System.out.print("\tEnter position to insert item in: ");
+                position = Integer.parseInt(stdin.readLine().trim());
+                System.out.println(position);
+                if(position < 0 || position > myList.size())
+                    System.out.println("Position specified is out of range!\n");
+                else {
+                    myList.add(position, itemName);
+                    System.out.printf("Item %s inserted into"+
+                                      " position %d in the list.%n%n", itemName, position);
+                }
+                break;
+            case 2:
+                System.out.print("\tEnter position to remove item from: ");
+                position = Integer.parseInt(stdin.readLine().trim());
+                System.out.println(position);
+                if(position < 0 || position >= myList.size())
+                    System.out.println("Position specified is out of range!\n");
+                else {
+                    returned = myList.remove(position);
+                    System.out.printf("Item %s removed from"+
+                                      " position %d in the list.%n%n", returned.toString(), position);
+                }
+                break;
+            case 3:
+                System.out.print("\tEnter position to retrieve item from: ");
+                position = Integer.parseInt(stdin.readLine().trim());
+                System.out.println(position);
+                if(position < 0 || position >= myList.size())
+                    System.out.println("Position specified is out of range!\n");
+                else {
+                    returned = myList.get(position);
+                    System.out.printf("Item %s retrieved from"+
+                                      " position %d in the list.%n%n", returned.toString(), position);
+                }
+                break;
+            case 4:
+                myList.removeAll();
+                System.out.println();
+                break;
+            case 5:
+                printList(myList);
+                break;
+            case 6:
+                myList.reverse();
+                System.out.println("List reversed\n");
+                break;
+            default: // continuing unless told to stop
+                continuing = false;
+                System.out.println("Exiting program... Goodbye!");
+                break;
+            }
+
+        } while(continuing);
+
+    }
+
+    /**
+     * Prints list after checking for null/empty
+     * @param list
+     */
+    private static void printList(ListArrayBasedPlus list) {
+        if(list == null || list.size() == 0)
+            System.out.println("\tList is empty.\n");
+        else
+            System.out.printf("\tList of size %d has the following items: %s%n%n",
+                              list.size(), list.toString());
+    }
+
+}::::::::::::::
+Lab2ECSampleruns.txt
+::::::::::::::
+Select from the following menu:
+	0. Exit program
+	1. Insert item into the list
+	2. Remove item from the list
+	3. Get item from the list
+	4. Clear the list
+	5. Print size and content of the list
+	6. Reverse the list
+
+Make your menu selection now: 5
+	List is empty.
+
+Make your menu selection now: 1
+You are now inserting an item into the list.
+	Enter item: Data
+	Enter position to insert item in: 0
+Item Data inserted into position 0 in the list.
+
+Make your menu selection now: 5
+	List of size 1 has the following items: Data
+
+Make your menu selection now: 1
+You are now inserting an item into the list.
+	Enter item: Beverly
+	Enter position to insert item in: 0
+Item Beverly inserted into position 0 in the list.
+
+Make your menu selection now: 5
+	List of size 2 has the following items: Beverly Data
+
+Make your menu selection now: 1
+You are now inserting an item into the list.
+	Enter item: Jean-Luc
+	Enter position to insert item in: 4
+Position specified is out of range!
+
+Make your menu selection now: 5
+	List of size 2 has the following items: Beverly Data
+
+Make your menu selection now: 1
+You are now inserting an item into the list.
+	Enter item: Jean-Luc
+	Enter position to insert item in: 2
+Item Jean-Luc inserted into position 2 in the list.
+
+Make your menu selection now: 1
+You are now inserting an item into the list.
+	Enter item: Geordi
+	Enter position to insert item in: 1
+Item Geordi inserted into position 1 in the list.
+
+Make your menu selection now: 1
+You are now inserting an item into the list.
+	Enter item: Worf
+	Enter position to insert item in: 3
+Item Worf inserted into position 3 in the list.
+
+Make your menu selection now: 5
+	List of size 5 has the following items: Beverly Geordi Data Worf Jean-Luc
+
+Make your menu selection now: 6
+List reversed
+
+Make your menu selection now: 5
+	List of size 5 has the following items: Jean-Luc Worf Data Geordi Beverly
+
+Make your menu selection now: 2
+	Enter position to remove item from: 5
+Position specified is out of range!
+
+Make your menu selection now: 2
+	Enter position to remove item from: 3
+Item Geordi removed from position 3 in the list.
+
+Make your menu selection now: 5
+	List of size 4 has the following items: Jean-Luc Worf Data Beverly
+
+Make your menu selection now: 2
+	Enter position to remove item from: 0
+Item Jean-Luc removed from position 0 in the list.
+
+Make your menu selection now: 1
+You are now inserting an item into the list.
+	Enter item: Will
+	Enter position to insert item in: 1
+Item Will inserted into position 1 in the list.
+
+Make your menu selection now: 5
+	List of size 4 has the following items: Worf Will Data Beverly
+
+Make your menu selection now: 3
+	Enter position to retrieve item from: 2
+Item Data retrieved from position 2 in the list.
+
+Make your menu selection now: 3
+	Enter position to retrieve item from: 0
+Item Worf retrieved from position 0 in the list.
+
+Make your menu selection now: 3
+	Enter position to retrieve item from: 7
+Position specified is out of range!
+
+Make your menu selection now: 5
+	List of size 4 has the following items: Worf Will Data Beverly
+
+Make your menu selection now: 6
+List reversed
+
+Make your menu selection now: 5
+	List of size 4 has the following items: Beverly Data Will Worf
+
+Make your menu selection now: 4
+
+Make your menu selection now: 5
+	List is empty.
+
+Make your menu selection now: 0
+Exiting program... Goodbye!

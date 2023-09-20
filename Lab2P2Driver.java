@@ -13,9 +13,10 @@ import java.io.*;
 
 public class Lab2P2Driver {
 
+    static BufferedReader stdin = new BufferedReader(new InputStreamReader(System.in));
+
     public static void main(String[] args) throws NumberFormatException, IOException {
 
-        BufferedReader stdin = new BufferedReader(new InputStreamReader(System.in));
         ListArrayListBasedPlus myList = new ListArrayListBasedPlus();
 
         System.out.println("Select from the following menu:\n"
@@ -27,10 +28,8 @@ public class Lab2P2Driver {
                            +"\t5. Print size and content of the list\n"
                            +"\t6. Reverse the list\n");
 
-        int selection, position;
+        int selection;
         boolean continuing = true;
-        String itemName;
-        Object returned;
         do {
 
             System.out.print("Make your menu selection now: ");
@@ -39,56 +38,22 @@ public class Lab2P2Driver {
 
             switch(selection) {
             case 1:
-                System.out.print("You are now inserting an item"+
-                                 " into the list.\n\tEnter item: ");
-                itemName = stdin.readLine().trim();
-                System.out.println(itemName);
-
-                System.out.print("\tEnter position to insert item in: ");
-                position = Integer.parseInt(stdin.readLine().trim());
-                System.out.println(position);
-                if(position < 0 || position > myList.size())
-                    System.out.println("Position specified is out of range!\n");
-                else {
-                    myList.add(position, itemName);
-                    System.out.printf("Item %s inserted into"+
-                                      " position %d in the list.%n%n", itemName, position);
-                }
+                Lab2P1Driver.addToList(myList);
                 break;
             case 2:
-                System.out.print("\tEnter position to remove item from: ");
-                position = Integer.parseInt(stdin.readLine().trim());
-                System.out.println(position);
-                if(position < 0 || position >= myList.size())
-                    System.out.println("Position specified is out of range!\n");
-                else {
-                    returned = myList.remove(position);
-                    System.out.printf("Item %s removed from"+
-                                      " position %d in the list.%n%n", returned.toString(), position);
-                }
+                Lab2P1Driver.removeFromList(myList);
                 break;
             case 3:
-                System.out.print("\tEnter position to retrieve item from: ");
-                position = Integer.parseInt(stdin.readLine().trim());
-                System.out.println(position);
-                if(position < 0 || position >= myList.size())
-                    System.out.println("Position specified is out of range!\n");
-                else {
-                    returned = myList.get(position);
-                    System.out.printf("Item %s retrieved from"+
-                                      " position %d in the list.%n%n", returned.toString(), position);
-                }
+                Lab2P1Driver.getFromList(myList);
                 break;
             case 4:
-                myList.removeAll();
-                System.out.println();
+                Lab2P1Driver.emptyList(myList);
                 break;
             case 5:
-                printList(myList);
+                Lab2P1Driver.printList(myList);
                 break;
             case 6:
-                myList.reverse();
-                System.out.println("List reversed\n");
+                reverseList(myList);
                 break;
             default: // continuing unless told to stop
                 continuing = false;
@@ -100,16 +65,9 @@ public class Lab2P2Driver {
 
     }
 
-    /**
-     * Prints list after checking for null/empty
-     * @param list
-     */
-    private static void printList(ListArrayListBasedPlus list) {
-        if(list == null || list.size() == 0)
-            System.out.println("\tList is empty.\n");
-        else
-            System.out.printf("\tList of size %d has the following items: %s%n%n",
-                              list.size(), list.toString());
+    public static void reverseList(ListArrayListBasedPlus list) {
+        list.reverse();
+        System.out.println("List reversed\n");
     }
 
 }
