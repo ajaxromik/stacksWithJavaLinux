@@ -1,7 +1,7 @@
 import java.io.*;
 
 /*
- * Purpose: Data Structure and Algorithms Lab 2 Problem 1
+ * Purpose: Data Structure and Algorithms Lab 2 Problem 2
  * Status: Complete and thoroughly tested
  * Last update: 09/19/22
  * Submitted:  09/19/22
@@ -11,12 +11,12 @@ import java.io.*;
  * @version: 2023.09.19
  */
 
-public class Lab2P1Driver {
+public class Lab2P2Driver {
 
     public static void main(String[] args) throws NumberFormatException, IOException {
         
         BufferedReader stdin = new BufferedReader(new InputStreamReader(System.in));
-        ListArrayBasedPlus myList = new ListArrayBasedPlus();
+        ListArrayListBasedPlus myList = new ListArrayListBasedPlus();
 
         System.out.println("Select from the following menu:\n"
             +"\t0. Exit program\n"
@@ -104,7 +104,7 @@ public class Lab2P1Driver {
      * Prints list after checking for null/empty
      * @param list
      */
-    private static void printList(ListArrayBasedPlus list) {
+    private static void printList(ListArrayListBasedPlus list) {
         if(list == null || list.size() == 0)
             System.out.println("\tList is empty.\n");
         else

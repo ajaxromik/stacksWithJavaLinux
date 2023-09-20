@@ -1,7 +1,7 @@
 import java.util.ArrayList;
 
 /*
- * Purpose: Data Structure and Algorithms Lab 2 Problem 1
+ * Purpose: Data Structure and Algorithms Lab 2 Problem 2
  * Status: Complete and thoroughly tested
  * Last update: 09/19/22
  * Submitted:  09/19/22
@@ -11,7 +11,7 @@ import java.util.ArrayList;
  * @version: 2023.09.19
  */
 
-public class ListArrayListBased extends ListArrayListBased {
+public class ListArrayListBasedPlus extends ListArrayListBased {
 
     public String toString() {
         return items.toString();
@@ -32,9 +32,7 @@ public class ListArrayListBased extends ListArrayListBased {
     }
 
     public void resize() {
-        int currentLen = items.size();
-        if(numItems == currentLen) // if max is reached
-            items.ensureCapacity(currentLen*2);
+        items.ensureCapacity(items.size()*2);
     }
 
 }

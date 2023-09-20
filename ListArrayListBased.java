@@ -1,7 +1,7 @@
 import java.util.ArrayList;
 
 /*
- * Purpose: Data Structure and Algorithms Lab 2 Problem 1
+ * Purpose: Data Structure and Algorithms Lab 2 Problem 2
  * Status: Complete and thoroughly tested
  * Last update: 09/19/22
  * Submitted:  09/19/22
