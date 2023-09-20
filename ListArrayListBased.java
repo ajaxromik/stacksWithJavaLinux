@@ -40,7 +40,7 @@ public class ListArrayListBased implements ListInterface{
     }
 
     public void removeAll() {
-        items = new ArrayList<Object>();
+        items.clear();
     }
 
 }
