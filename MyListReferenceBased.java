@@ -15,7 +15,7 @@ public class MyListReferenceBased implements ListInterface
   
   private Node head; 
 
-  public ListReferenceBased() 
+  public MyListReferenceBased() 
   {
     head = null;
   }

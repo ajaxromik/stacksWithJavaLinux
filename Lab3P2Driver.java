@@ -1,7 +1,7 @@
 import java.io.*;
 
 /*
- * Purpose: Data Structure and Algorithms Lab 3 Problem 1
+ * Purpose: Data Structure and Algorithms Lab 3 Problem 2
  * Status: Complete and thoroughly tested
  * Last update: 09/26/22
  * Submitted:  09/26/22
@@ -17,7 +17,7 @@ public class Lab2P1Driver {
 
     public static void main(String[] args) throws NumberFormatException, IOException {
 
-        ListArrayBasedPlus myList = new ListArrayBasedPlus();
+        MyListReferenceBased myList = new MyListReferenceBased();
 
         System.out.println("Select from the following menu:\n"
                            +"\t0. Exit program\n"
@@ -54,7 +54,7 @@ public class Lab2P1Driver {
                 printList(myList);
                 break;
             case 6:
-                deleteMinAndMax(myList);
+                displayAndDeleteLargeAndSmall(myList);
                 break;
             case 7:
                 reverseList(myList);
@@ -127,13 +127,41 @@ public class Lab2P1Driver {
                               list.size(), list.toString());
     }
 
-    public static void deleteMinAndMax(ListArrayBasedPlus list) {
-        //TODO
+    /**
+     * Assumes the list is not empty and that indices has a length of 2
+     */
+    private static void findIndexLargeAndSmall(MyListReferenceBased list, int[] indices) {
+        if(! list.isEmpty()) {
+            int listSize = list.size();
+            String minString = list.get(0);
+            String maxString = list.get(0);
+            for(int i = 0; i < listSize; i++) {
+                String current = (String)list.get(i);
+                if(minString.compareTo(current) > 0) { // if the current string is smaller than the min
+                    minString = current;
+                    indices[0] = i;
+                } else if (maxString.compareTo(current) < 0) { // else if the current string is bigger than the max
+                    maxString = current;
+                    indices[1] = i;
+                } //otherwise nothing changes
+            }
+        } else {
+            indices[0] = -1;
+            indices[1] = -1;
+        }
     }
 
-    public static void reverseList(ListArrayBasedPlus list) {
-        list.reverse();
-        System.out.println("List reversed\n");
+    public static void displayAndDeleteLargeAndSmall(MyListReferenceBased list) {
+        if(list == null || list.size() == 0)
+            System.out.println("List empty, nothing to delete!\n");
+        //TODO
+
+    }
+
+    public static void reverseList(MyListReferenceBased list) {
+        if(list == null || list.size() == 0)
+            System.out.println("List is empty.. nothing to reverse!\n");
+        //TODO
     }
 
 }
