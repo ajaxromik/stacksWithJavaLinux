@@ -1,23 +1,23 @@
 import java.io.*;
 
 /*
- * Purpose: Data Structure and Algorithms Lab 2 EC Extra Credit
+ * Purpose: Data Structure and Algorithms Lab 3 Problem 1
  * Status: Complete and thoroughly tested
- * Last update: 09/19/22
- * Submitted:  09/19/22
+ * Last update: 09/26/22
+ * Submitted:  09/26/22
  * Comment: test suite and sample run attached
  * Comment: I declare that this is entirely my own work
  * @author: William Carr
- * @version: 2023.09.19
+ * @version: 2023.09.26
  */
 
-public class Lab2ECDriver {
-
-    static BufferedReader stdin = new BufferedReader(new InputStreamReader(System.in));
+public class Lab2P1Driver {
     
+    static BufferedReader stdin = new BufferedReader(new InputStreamReader(System.in));
+
     public static void main(String[] args) throws NumberFormatException, IOException {
 
-        ListArrayBasedPlusMore myList = new ListArrayBasedPlusMore();
+        ListArrayBasedPlus myList = new ListArrayBasedPlus();
 
         System.out.println("Select from the following menu:\n"
                            +"\t0. Exit program\n"
@@ -25,8 +25,9 @@ public class Lab2ECDriver {
                            +"\t2. Remove item from the list\n"
                            +"\t3. Get item from the list\n"
                            +"\t4. Clear the list\n"
-                           +"\t5. Print size and content of the list\n"
-                           +"\t6. Reverse the list\n");
+                           +"\t5. Display size and content of the list\n"
+                           +"\t6. Delete the smallest and largest item in the list\n"
+                           +"\t7. Reverse the list\n");
 
         int selection;
         boolean continuing = true;
@@ -53,8 +54,10 @@ public class Lab2ECDriver {
                 printList(myList);
                 break;
             case 6:
-                reverseList(myList);
+                deleteMinAndMax(myList);
                 break;
+            case 7:
+                reverseList(myList);
             default: // continuing unless told to stop
                 continuing = false;
                 System.out.println("Exiting program... Goodbye!");
@@ -122,6 +125,10 @@ public class Lab2ECDriver {
         else
             System.out.printf("\tList of size %d has the following items: %s%n%n",
                               list.size(), list.toString());
+    }
+
+    public static void deleteMinAndMax(ListArrayBasedPlus list) {
+        //TODO
     }
 
     public static void reverseList(ListArrayBasedPlus list) {
