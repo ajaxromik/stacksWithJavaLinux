@@ -1,22 +1,36 @@
-// Please note that this code is slightly different from the textbook code 
-//to reflect the fact that the Node class is implemented using data encapsulation
 
+/*
+ * Purpose: Data Structure and Algorithms Lab 3 Problem 1
+ * Status: Complete and thoroughly tested
+ * Last update: 09/26/22
+ * Submitted:  09/26/22
+ * Comment: test suite and sample run attached
+ * Comment: I declare that this is entirely my own work
+ * @author: William Carr
+ * @version: 2023.09.26
+ */
 
-// ****************************************************
-// Reference-based implementation of ADT list.
-// ****************************************************
-public class ListReferenceBased implements ListInterface 
+public class MyListReferenceBased implements ListInterface 
 {
-  // reference to linked list of items
+  
   private Node head; 
 
   public ListReferenceBased() 
   {
     head = null;
-  }  // end default constructor
+  }
 
-  public String toString() { // TODO do not use get or find
-
+  public String toString() {
+    Node current = head;
+    StringBuilder result = StringBuilder();
+    boolean first = true;
+    while (current != null) {
+      result.append(first ? "" : " " + current.getItem().toString());
+      current = current.getNext();
+      if(first)
+        first = false;
+    }
+    return result.toString();
   }
 
   public boolean isEmpty() 
@@ -35,6 +49,9 @@ public class ListReferenceBased implements ListInterface
     return count;
   }
 
+  /**
+   * Finds the node, assuming that the index is valid
+   */
   private Node find(int index) 
   {
     Node curr = head;
@@ -60,7 +77,7 @@ public class ListReferenceBased implements ListInterface
   public void add(int index, Object item)
                   throws ListIndexOutOfBoundsException 
   {
-    if (index >= 0 && index < numItems+1) 
+    if (index >= 0 && index < size()+1) 
     {
       if (index == 0) 
       {
@@ -76,20 +93,19 @@ public class ListReferenceBased implements ListInterface
         // the node that prev references
         Node newNode = new Node(item, prev.getNext());
         prev.setNext(newNode);
-      } // end if
-      numItems++;
+      }
     } 
     else 
     {
       throw new ListIndexOutOfBoundsException(
                     "List index out of bounds exception on add");
-    } // end if
-  }  // end add
+    }
+  }
 
   public Object remove(int index) 
                    throws ListIndexOutOfBoundsException 
   { Object result;
-    if (index >= 0 && index < numItems) 
+    if (index >= 0 && index < size()) 
     {
       if (index == 0) 
       {
@@ -105,16 +121,15 @@ public class ListReferenceBased implements ListInterface
         Node curr = prev.getNext(); 
         result = curr.getItem();
         prev.setNext(curr.getNext());
-      } // end if
-      numItems--;
-    } // end if
+      }
+    }
     else 
     {
       throw new ListIndexOutOfBoundsException(
                    "List index out of bounds exception on remove");
-    } // end if
+    }
     return result;
-  }   // end remove
+  }
 
   public void removeAll() 
   {
@@ -122,7 +137,5 @@ public class ListReferenceBased implements ListInterface
     // unreachable and thus marked for garbage 
     // collection
     head = null;
-    numItems = 0;
-  } // end removeAll
-
-} // end ListReferenceBased
+  }
+}
