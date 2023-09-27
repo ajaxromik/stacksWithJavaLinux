@@ -1,5 +1,0 @@
-Problem 1: compiles, runs correctly on all provided input
-Problem 2: compiles, runs correctly on all provided input
-Problem 3: Completed and attached in ListInterfaceRelatedArrayListCode
-Problem 4: Complete
-Extra Credit: Complete

@@ -1,9 +1,0 @@
-I learned about more efficient ways to deal with collections.
-I also felt like I learned what the behing-the-scenes of collections looks like.
-I did not exactly expect to hold the variable numItems, but it
-was still valuable to really see it all in action.
-I also learned that whoever wrote ArrayList has a very, 
-very different coding style from me.
-
-Doing the Extra Credit made me realize that System.arraycopy is fast,
-although the parameters were a little confusing at first.
