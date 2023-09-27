@@ -131,6 +131,8 @@ public class Lab2P1Driver {
      * Assumes the list is not empty and that indices has a length of 2
      */
     private static void findIndexLargeAndSmall(MyListReferenceBased list, int[] indices) {
+        indices[0] = -1;
+        indices[1] = -1;
         if(! list.isEmpty()) {
             int listSize = list.size();
             String minString = list.get(0);
@@ -145,9 +147,6 @@ public class Lab2P1Driver {
                     indices[1] = i;
                 } //otherwise nothing changes
             }
-        } else {
-            indices[0] = -1;
-            indices[1] = -1;
         }
     }
 
