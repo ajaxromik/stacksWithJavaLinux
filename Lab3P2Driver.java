@@ -58,6 +58,7 @@ public class Lab3P2Driver {
                 break;
             case 7:
                 reverseList(myList);
+                break;
             default: // continuing unless told to stop
                 continuing = false;
                 System.out.println("Exiting program... Goodbye!");
@@ -168,7 +169,7 @@ public class Lab3P2Driver {
         if(indices[0] == -1)
             System.out.println("List empty, nothing to delete!\n");
         else if(indices[1] == -1)
-            System.out.printf("Item %s deleted.%n%n", list.get(0));
+            System.out.printf("Item %s deleted.%n%n", list.remove(0));
         else {
             if(indices[0] > indices[1])
                 System.out.printf("Smallest item %s and largest item %s deleted.%n%n",
@@ -183,7 +184,19 @@ public class Lab3P2Driver {
     public static void reverseList(MyListReferenceBased list) {
         if(list == null || list.size() == 0)
             System.out.println("List is empty.. nothing to reverse!\n");
-        //TODO
+        else {
+            int listSize = list.size();
+            for(int i = 0; i < listSize; i++) {
+                //'current' starts at the last index,
+                // but traverses the array by values of each index changing
+                Object current = list.get(listSize-1);
+                list.add(i, current); // add current to first pos
+                list.remove(listSize); // removes where current was
+            }
+            System.out.printf("List has been reversed.\n" +
+                " Here is the content: %s%n%n",
+                list.toString());
+        }
     }
 
 }

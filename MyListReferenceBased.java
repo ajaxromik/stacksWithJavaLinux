@@ -25,7 +25,7 @@ public class MyListReferenceBased implements ListInterface
     StringBuilder result = new StringBuilder();
     boolean first = true;
     while (current != null) {
-      result.append(first ? "" : " " + current.getItem().toString());
+      result.append((first ? "" : " ")+ current.getItem().toString());
       current = current.getNext();
       if(first)
         first = false;
