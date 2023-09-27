@@ -133,27 +133,50 @@ public class Lab2P1Driver {
     private static void findIndexLargeAndSmall(MyListReferenceBased list, int[] indices) {
         indices[0] = -1;
         indices[1] = -1;
-        if(! list.isEmpty()) {
-            int listSize = list.size();
+        int listSize = list.size();
+
+        if(listSize == 1) {
+            indices[0] = 0;
+        } else if(listSize > 0) {
+
             String minString = list.get(0);
+            indices[0] = 0;
             String maxString = list.get(0);
+            indices[1] = 0;
+
             for(int i = 0; i < listSize; i++) {
                 String current = (String)list.get(i);
-                if(minString.compareTo(current) > 0) { // if the current string is smaller than the min
+                if(minString.compareTo(current) > 0) { 
+                // if the current string is smaller than the min
                     minString = current;
                     indices[0] = i;
-                } else if (maxString.compareTo(current) < 0) { // else if the current string is bigger than the max
+
+                } else if (maxString.compareTo(current) < 0) { 
+                // else if the current string is bigger than the max
                     maxString = current;
                     indices[1] = i;
+
                 } //otherwise nothing changes
             }
         }
     }
 
     public static void displayAndDeleteLargeAndSmall(MyListReferenceBased list) {
-        if(list == null || list.size() == 0)
+        int[] indices = new int[2];
+        findIndexLargeAndSmall(list, indices);
+
+        if(indices[0] == -1)
             System.out.println("List empty, nothing to delete!\n");
-        //TODO
+        else if(indices[1] == -1)
+            System.out.printf("Item %s deleted.%n%n", list.get(0));
+        else {
+            if(indices[0] > indices[1])
+                System.out.printf("Smallest item %s and largest item %s deleted.%n%n",
+                    list.remove(indices[0]), list.remove(indices[1]));
+            else
+                System.out.printf("Smallest item %s and largest item %s deleted.%n%n",
+                    list.remove(indices[0]), list.remove(indices[1]-1));
+        }
 
     }
 
