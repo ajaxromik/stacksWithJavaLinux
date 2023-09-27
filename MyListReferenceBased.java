@@ -22,7 +22,7 @@ public class MyListReferenceBased implements ListInterface
 
   public String toString() {
     Node current = head;
-    StringBuilder result = StringBuilder();
+    StringBuilder result = new StringBuilder();
     boolean first = true;
     while (current != null) {
       result.append(first ? "" : " " + current.getItem().toString());

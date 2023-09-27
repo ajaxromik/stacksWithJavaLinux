@@ -11,7 +11,7 @@ import java.io.*;
  * @version: 2023.09.26
  */
 
-public class Lab2P1Driver {
+public class Lab3P2Driver {
     
     static BufferedReader stdin = new BufferedReader(new InputStreamReader(System.in));
 
@@ -139,12 +139,12 @@ public class Lab2P1Driver {
             indices[0] = 0;
         } else if(listSize > 0) {
 
-            String minString = list.get(0);
+            String minString = (String)list.get(0);
             indices[0] = 0;
-            String maxString = list.get(0);
+            String maxString = (String)list.get(0);
             indices[1] = 0;
 
-            for(int i = 0; i < listSize; i++) {
+            for(int i = 1; i < listSize; i++) {
                 String current = (String)list.get(i);
                 if(minString.compareTo(current) > 0) { 
                 // if the current string is smaller than the min
