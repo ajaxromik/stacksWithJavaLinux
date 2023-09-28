@@ -66,7 +66,7 @@ public class MyListReferenceBased implements ListInterfaceR
   /**
    * Finds the node, assuming that the index is valid
    */
-  private Node find(int index) 
+  public Node find(int index) 
   {
     Node curr = head;
 
