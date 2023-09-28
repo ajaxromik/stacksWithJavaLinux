@@ -18,7 +18,7 @@ public class DNode
 
   public DNode(Object item) 
   {
-    this.item = newItem;
+    this.item = item;
     this.next = this;
     this.back = this;
   }
@@ -40,22 +40,22 @@ public class DNode
     return item;
   }
 
-  public void setNext(Node next) 
+  public void setNext(DNode next) 
   {
     this.next = next;
   }
 
-  public Node getNext() 
+  public DNode getNext() 
   {
     return next;
   }
 
-  public void setBack(Node back) 
+  public void setBack(DNode back) 
   {
     this.back = back;
   }
 
-  public Node getBack() 
+  public DNode getBack() 
   {
     return back;
   }
