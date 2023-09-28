@@ -11,7 +11,7 @@ import java.io.*;
  * @version: 2023.09.26
  */
 
-public class Lab3P2Driver {
+public class Lab4P1Driver {
     
     static BufferedReader stdin = new BufferedReader(new InputStreamReader(System.in));
 

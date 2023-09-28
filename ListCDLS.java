@@ -10,40 +10,39 @@
  * @version: 2023.09.28
  */
 
-public class MyListReferenceBased implements ListInterfaceR 
+public class ListCDLS implements ListInterfaceR 
 {
   
   private DNode head; 
   private int numItems;
 
-  public MyListReferenceBased() 
+  public ListCDLS() 
   {
     head = null;
+    numItems = 0;
   }
 
   public String toString() {
     DNode current = head;
     StringBuilder result = new StringBuilder();
-    boolean first = true;
-    do {
-      result.append((first ? "" : " ")+ current.getItem().toString());
+
+    for(int i = 0; i < numItems; i++) {
+      result.append((i == 0 ? "" : " ") + current.getItem().toString());
       current = current.getNext();
-      if(first)
-        first = false;
-    } while (current != head);
+    }
+
     return result.toString();
   }
 
   public String toStringR() {
     DNode current = head;
     StringBuilder result = new StringBuilder();
-    boolean first = true;
-    do {
-      current = current.getBack(); //go backward first 
-      result.append((first ? "" : " ")+ current.getItem().toString());
-      if(first)
-        first = false;
-    } while (current != head);
+
+    for(int i = numItems-1; i >= 0; i--) {
+      current = current.getBack();
+      result.append((i == numItems-1 ? "" : " ") + current.getItem().toString());
+    }
+
     return result.toString();
   }
 
@@ -54,21 +53,15 @@ public class MyListReferenceBased implements ListInterfaceR
 
   public int size() 
   {
-    int count = 0;
-    Node current = head;
-    while(current != null) {
-      current = current.getNext();
-      count++;
-    }
-    return count;
+    return numItems;
   }
 
   /**
-   * Finds the node, assuming that the index is valid
+   * Finds the Dnode, assuming that the index is valid
    */
-  public Node find(int index) 
+  private DNode find(int index) 
   {
-    Node curr = head;
+    DNode curr = head;
 
     if(index <= numItems/2) {
       for(int i = 0; i < index; i++) {
@@ -87,7 +80,7 @@ public class MyListReferenceBased implements ListInterfaceR
   public Object get(int index) 
                 throws ListIndexOutOfBoundsException 
   {
-    if (index >= 0 && index < size())
+    if (index >= 0 && index < numItems)
       return find(index).getItem();
     else 
     {
@@ -99,22 +92,23 @@ public class MyListReferenceBased implements ListInterfaceR
   public void add(int index, Object item)
                   throws ListIndexOutOfBoundsException 
   {
-    if (index >= 0 && index < size()+1) 
+    if (index >= 0 && index < numItems+1) 
     {
       if (index == 0) 
       {
-        // insert the new node containing item at
-        // beginning of list
-        Node newNode = new Node(item, head);
-        head = newNode;
+        DNode back = head.getBack();
+        DNode newDNode = new DNode(item, head, back);
+        head.setBack(newDNode);
+        this.head = newDNode;
+        back.setNext(newDNode);
       } 
       else 
       {
-        Node prev = find(index-1);
-        // insert the new node containing item after 
-        // the node that prev references
-        Node newNode = new Node(item, prev.getNext());
-        prev.setNext(newNode);
+        DNode prev = find(index-1);
+        DNode next = prev.getNext();
+        DNode newDNode = new DNode(item, next, prev);
+        next.setBack(newDNode);
+        prev.setNext(newDNode);
       }
     } 
     else 
