@@ -21,7 +21,7 @@ public class TestDriver {
 	    int numItems = 4;
 
 	    for(int i = 0; i < numItems; i++) {
-	      result.append((i == 0 ? "" : " ") + current.getItem().toString());
+	      result.append(current.toString());
 	      current = current.getNext();
 	    }
 
@@ -32,7 +32,7 @@ public class TestDriver {
 
 		for(int i = numItems-1; i >= 0; i--) {
 	      current = current.getBack();
-	      result.append((i == numItems-1 ? "" : " ") + current.getItem().toString());
+	      result.append(current.toString());
 	    }
 
 		System.out.println(result.toString());
