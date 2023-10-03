@@ -27,7 +27,7 @@ public class ListCDLS implements ListInterfaceR
     StringBuilder result = new StringBuilder();
 
     for(int i = 0; i < numItems; i++) {
-      result.append((i == 0 ? "" : " ") + current.getItem().toString());
+      result.append(current.toString());
       current = current.getNext();
     }
 
@@ -40,7 +40,7 @@ public class ListCDLS implements ListInterfaceR
 
     for(int i = numItems-1; i >= 0; i--) {
       current = current.getBack();
-      result.append((i == numItems-1 ? "" : " ") + current.getItem().toString());
+      result.append(current.toString());
     }
 
     return result.toString();
@@ -110,6 +110,7 @@ public class ListCDLS implements ListInterfaceR
         next.setBack(newDNode);
         prev.setNext(newDNode);
       }
+      numItems++;
     } 
     else 
     {
@@ -118,7 +119,7 @@ public class ListCDLS implements ListInterfaceR
     }
   }
 
-  public Object remove(int index) 
+  public Object remove(int index)  //TODO
                    throws ListIndexOutOfBoundsException 
   { Object result;
     if (index >= 0 && index < size()) 
@@ -147,7 +148,7 @@ public class ListCDLS implements ListInterfaceR
     return result;
   }
 
-  public void removeAll() 
+  public void removeAll() //TODO
   {
     // setting head to null causes list to be
     // unreachable and thus marked for garbage 
