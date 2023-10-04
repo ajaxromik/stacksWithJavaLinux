@@ -94,7 +94,11 @@ public class ListCDLS implements ListInterfaceR
   {
     if (index >= 0 && index < numItems+1) 
     {
-      if (index == 0) 
+      if(head == null) 
+      {
+        this.head = new DNode(item);
+      }
+      else if (index == 0) 
       {
         DNode back = head.getBack();
         DNode newDNode = new DNode(item, head, back);
@@ -122,13 +126,21 @@ public class ListCDLS implements ListInterfaceR
   public Object remove(int index)  //TODO
                    throws ListIndexOutOfBoundsException 
   { Object result;
-    if (index >= 0 && index < size()) 
+    if (index >= 0 && index < numItems) 
     {
-      if (index == 0) 
+      if(numItems == 1)
+      {
+        head = null;
+      }
+      else if (index == 0) 
       {
         // delete the first node from the list
         result = head.getItem();
-        head = head.getNext();
+        DNode next = head.getNext();
+        DNode back = head.getBack();
+        back.setNext(next);
+        next.setBack(back);
+        this.head = next;
       } 
       else 
       {
@@ -139,6 +151,7 @@ public class ListCDLS implements ListInterfaceR
         result = curr.getItem();
         prev.setNext(curr.getNext());
       }
+      numItems--;
     }
     else 
     {
@@ -148,7 +161,7 @@ public class ListCDLS implements ListInterfaceR
     return result;
   }
 
-  public void removeAll() //TODO
+  public void removeAll()
   {
     // setting head to null causes list to be
     // unreachable and thus marked for garbage 
