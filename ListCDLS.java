@@ -125,12 +125,13 @@ public class ListCDLS implements ListInterfaceR
 
   public Object remove(int index)
                    throws ListIndexOutOfBoundsException 
-  { Object result;
+  { Object result = null;
     if (index >= 0 && index < numItems) 
     {
       if(numItems == 1)
       {
-        head = null;
+        result = head.getItem();
+        this.head = null;
       }
       else if (index == 0) 
       {

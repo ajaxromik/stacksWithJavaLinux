@@ -1,14 +1,14 @@
 import java.io.*;
 
 /*
- * Purpose: Data Structure and Algorithms Lab 3 Problem 2
+ * Purpose: Data Structure and Algorithms Lab 4 Problem 1
  * Status: Complete and thoroughly tested
- * Last update: 09/26/22
- * Submitted:  09/26/22
+ * Last update: 09/28/22
+ * Submitted:  09/28/22
  * Comment: test suite and sample run attached
  * Comment: I declare that this is entirely my own work
  * @author: William Carr
- * @version: 2023.09.26
+ * @version: 2023.09.28
  */
 
 public class Lab4P1Driver {
@@ -17,7 +17,7 @@ public class Lab4P1Driver {
 
     public static void main(String[] args) throws NumberFormatException, IOException {
 
-        MyListReferenceBased myList = new MyListReferenceBased();
+        ListCDLS myList = new ListCDLS();
 
         System.out.println("Select from the following menu:\n"
                            +"\t0. Exit program\n"
@@ -25,7 +25,7 @@ public class Lab4P1Driver {
                            +"\t2. Remove item from the list\n"
                            +"\t3. Get item from the list\n"
                            +"\t4. Clear the list\n"
-                           +"\t5. Display size and content of the list\n"
+                           +"\t5. Display size and content of the list in order and in reverse order\n"
                            +"\t6. Delete the smallest and largest item in the list\n"
                            +"\t7. Reverse the list\n");
 
@@ -69,7 +69,7 @@ public class Lab4P1Driver {
 
     }
 
-    public static void addToList(ListInterface list) throws IOException{
+    public static void addToList(ListInterfaceR list) throws IOException{
         System.out.print("You are now inserting an item"+
                          " into the list.\n\tEnter item: ");
         String itemName = stdin.readLine().trim();
@@ -87,7 +87,7 @@ public class Lab4P1Driver {
         }
     }
 
-    public static void removeFromList(ListInterface list) throws IOException{
+    public static void removeFromList(ListInterfaceR list) throws IOException{
         System.out.print("\tEnter position to remove item from: ");
         int position = Integer.parseInt(stdin.readLine().trim());
         System.out.println(position);
@@ -99,7 +99,7 @@ public class Lab4P1Driver {
         }
     }
 
-    public static void getFromList(ListInterface list) throws IOException{
+    public static void getFromList(ListInterfaceR list) throws IOException{
         System.out.print("\tEnter position to retrieve item from: ");
         int position = Integer.parseInt(stdin.readLine().trim());
         System.out.println(position);
@@ -111,7 +111,7 @@ public class Lab4P1Driver {
         }
     }
 
-    public static void emptyList(ListInterface list) {
+    public static void emptyList(ListInterfaceR list) {
         list.removeAll();
         System.out.println();
     }
@@ -120,18 +120,34 @@ public class Lab4P1Driver {
      * Prints list after checking for null/empty
      * @param list
      */
-    public static void printList(ListInterface list) {
+    public static void printList(ListInterfaceR list) {
+        System.out.print("In order: ");
+        printForwards(list);
+
+        System.out.print("In reverse order: ");
+        printR(list);
+    }
+
+    public static void printForwards(ListInterfaceR list) {
         if(list == null || list.size() == 0)
-            System.out.println("\tList is empty.\n");
+            System.out.print("List is empty.\n");
         else
-            System.out.printf("\tList of size %d has the following items: %s%n%n",
+            System.out.printf("List of size %d has the following items: %s%n",
                               list.size(), list.toString());
+    }
+
+    public static void printR(ListInterfaceR list) {
+        if(list == null || list.size() == 0)
+            System.out.println("List is empty.\n");
+        else
+            System.out.printf("List of size %d has the following items: %s%n%n",
+                              list.size(), list.toStringR());
     }
 
     /**
      * Assumes the list is not empty and that indices has a length of 2
      */
-    private static void findIndexLargeAndSmall(MyListReferenceBased list, int[] indices) {
+    private static void findIndexLargeAndSmall(ListCDLS list, int[] indices) {
         indices[0] = -1;
         indices[1] = -1;
         int listSize = list.size();
@@ -162,7 +178,7 @@ public class Lab4P1Driver {
         }
     }
 
-    public static void displayAndDeleteLargeAndSmall(MyListReferenceBased list) {
+    public static void displayAndDeleteLargeAndSmall(ListCDLS list) {
         int[] indices = new int[2];
         findIndexLargeAndSmall(list, indices);
 
@@ -181,7 +197,7 @@ public class Lab4P1Driver {
 
     }
 
-    public static void reverseList(MyListReferenceBased list) {
+    public static void reverseList(ListCDLS list) {
         if(list == null || list.size() == 0)
             System.out.println("List is empty.. nothing to reverse!\n");
         else {
