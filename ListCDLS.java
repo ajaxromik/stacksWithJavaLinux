@@ -123,7 +123,7 @@ public class ListCDLS implements ListInterfaceR
     }
   }
 
-  public Object remove(int index)  //TODO
+  public Object remove(int index)
                    throws ListIndexOutOfBoundsException 
   { Object result;
     if (index >= 0 && index < numItems) 
@@ -144,12 +144,12 @@ public class ListCDLS implements ListInterfaceR
       } 
       else 
       {
-        Node prev = find(index-1);
-        // delete the node after the node that prev
-        // references, save reference to node
-        Node curr = prev.getNext(); 
-        result = curr.getItem();
-        prev.setNext(curr.getNext());
+        DNode prev = find(index-1);
+        DNode target = prev.getNext();
+        DNode next = target.getNext();
+        result = target.getItem();
+        prev.setNext(next);
+        next.setBack(prev);
       }
       numItems--;
     }
