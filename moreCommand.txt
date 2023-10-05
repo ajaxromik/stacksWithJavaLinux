@@ -1,1 +1,1 @@
-more Lab3Status.txt Lab3Conclusions.txt MyListReferenceBased.java Node.java ListReferenceBased.java ListInterface.java ListIndexOutOfBoundsException.java Lab3P2Driver.java Lab3P2Sampleruns.txt Lab3P3Driver.java Lab3P3Sampleruns.txt Lab3P3writeup.txt > allfiles.txt
+more Lab5Status.txt Lab5Conclusions.txt Lab5P0Driver.java StackRA.java StackSLS.java Node.java StackInterface.java StackException.java Lab5P0Sampleruns.txt > allfiles.txt
