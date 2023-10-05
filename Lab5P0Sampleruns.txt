@@ -1,0 +1,152 @@
+StackRA ver.
+Select from the following menu:
+	0. Exit program
+	1. Push item onto the stack
+	2. Pop item from the stack
+	3. Display the top item of the stack
+	4. Display items in the stack
+	5. Clear the stack
+
+Make your menu selection now: 2
+Stack is empty
+
+
+Make your menu selection now: 3
+Stack is empty
+
+
+Make your menu selection now: 4
+Stack is empty.
+
+Make your menu selection now: 1
+You are now inserting an item onto the top of the stack.
+	Enter item: fox
+Item fox inserted onto the top of the stack.
+
+Make your menu selection now: 3
+Item fox retrieved from the top of the stack.
+
+Make your menu selection now: 4
+Stack has the following items: fox 
+
+Make your menu selection now: 1
+You are now inserting an item onto the top of the stack.
+	Enter item: brown
+Item brown inserted onto the top of the stack.
+
+Make your menu selection now: 4
+Stack has the following items: brown fox 
+
+Make your menu selection now: 2
+Item brown popped from the stack.
+
+Make your menu selection now: 1
+You are now inserting an item onto the top of the stack.
+	Enter item: brown
+Item brown inserted onto the top of the stack.
+
+Make your menu selection now: 1
+You are now inserting an item onto the top of the stack.
+	Enter item: quick
+Item quick inserted onto the top of the stack.
+
+Make your menu selection now: 1
+You are now inserting an item onto the top of the stack.
+	Enter item: The
+Item The inserted onto the top of the stack.
+
+Make your menu selection now: 4
+Stack has the following items: The quick brown fox 
+
+Make your menu selection now: 3
+Item The retrieved from the top of the stack.
+
+Make your menu selection now: 2
+Item The popped from the stack.
+
+Make your menu selection now: 4
+Stack has the following items: quick brown fox 
+
+Make your menu selection now: 5
+
+Make your menu selection now: 4
+Stack is empty.
+
+Make your menu selection now: 0
+Exiting program... Goodbye!
+StackSLS ver.
+Select from the following menu:
+	0. Exit program
+	1. Push item onto the stack
+	2. Pop item from the stack
+	3. Display the top item of the stack
+	4. Display items in the stack
+	5. Clear the stack
+
+Make your menu selection now: 2
+Stack is empty
+
+
+Make your menu selection now: 3
+Stack is empty
+
+
+Make your menu selection now: 4
+Stack is empty.
+
+Make your menu selection now: 1
+You are now inserting an item onto the top of the stack.
+	Enter item: fox
+Item fox inserted onto the top of the stack.
+
+Make your menu selection now: 3
+Item fox retrieved from the top of the stack.
+
+Make your menu selection now: 4
+Stack has the following items: fox 
+
+Make your menu selection now: 1
+You are now inserting an item onto the top of the stack.
+	Enter item: brown
+Item brown inserted onto the top of the stack.
+
+Make your menu selection now: 4
+Stack has the following items: brown fox 
+
+Make your menu selection now: 2
+Item brown popped from the stack.
+
+Make your menu selection now: 1
+You are now inserting an item onto the top of the stack.
+	Enter item: brown
+Item brown inserted onto the top of the stack.
+
+Make your menu selection now: 1
+You are now inserting an item onto the top of the stack.
+	Enter item: quick
+Item quick inserted onto the top of the stack.
+
+Make your menu selection now: 1
+You are now inserting an item onto the top of the stack.
+	Enter item: The
+Item The inserted onto the top of the stack.
+
+Make your menu selection now: 4
+Stack has the following items: The quick brown fox 
+
+Make your menu selection now: 3
+Item The retrieved from the top of the stack.
+
+Make your menu selection now: 2
+Item The popped from the stack.
+
+Make your menu selection now: 4
+Stack has the following items: quick brown fox 
+
+Make your menu selection now: 5
+
+Make your menu selection now: 4
+Stack is empty.
+
+Make your menu selection now: 0
+Exiting program... Goodbye!

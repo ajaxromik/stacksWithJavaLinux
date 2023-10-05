@@ -17,9 +17,9 @@ public class Lab5P0Driver {
 
     public static void main(String[] args) throws NumberFormatException, IOException {
 
-        StackRA<String> myStack = new StackRA<String>();
+        StackSLS<String> myStack = new StackSLS<String>();
 
-        System.out.println("Select from the following menu:\n"
+        System.out.println("StackSLS ver.\nSelect from the following menu:\n"
                            +"\t0. Exit program\n"
                            +"\t1. Push item onto the stack\n"
                            +"\t2. Pop item from the stack\n"
@@ -74,7 +74,7 @@ public class Lab5P0Driver {
 
     public static void popItem(StackInterface<String> stack) {
         if(stack.isEmpty())
-            System.out.println("Stack is empty\n");
+            System.out.println("Stack is empty\n\n");
         else {
             System.out.printf("Item %s popped from"+
                               " the stack.%n%n", stack.pop());
