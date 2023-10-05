@@ -62,7 +62,7 @@ public class Lab4P1Driver {
     }
 
     //TODO
-    public static void pushItem(ListInterfaceR list) throws IOException{
+    public static void pushItem(StackInterface list) throws IOException{
         System.out.print("You are now inserting an item"+
                          " into the list.\n\tEnter item: ");
         String itemName = stdin.readLine().trim();
@@ -81,7 +81,7 @@ public class Lab4P1Driver {
     }
 
     //TODO
-    public static void popItem(ListInterfaceR list) throws IOException{
+    public static void popItem(StackInterface list) throws IOException{
         System.out.print("\tEnter position to remove item from: ");
         int position = Integer.parseInt(stdin.readLine().trim());
         System.out.println(position);
@@ -94,7 +94,7 @@ public class Lab4P1Driver {
     }
 
     //TODO
-    public static void topItem(ListInterfaceR list) throws IOException{
+    public static void topItem(StackInterface list) throws IOException{
         System.out.print("\tEnter position to retrieve item from: ");
         int position = Integer.parseInt(stdin.readLine().trim());
         System.out.println(position);
@@ -110,7 +110,7 @@ public class Lab4P1Driver {
      * Prints list after checking for null/empty
      * @param list //TODO
      */
-    public static void printStack(ListInterfaceR list) {
+    public static void printStack(StackInterface list) {
         if(list == null || list.size() == 0)
             System.out.print("List is empty.\n");
         else
@@ -118,7 +118,7 @@ public class Lab4P1Driver {
                               list.size(), list.toString());
     }
 
-    public static void emptyList(ListInterfaceR list) { // TODO
+    public static void emptyList(StackInterface list) { // TODO
         list.removeAll();
         System.out.println();
     }
