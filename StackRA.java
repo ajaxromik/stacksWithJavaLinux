@@ -19,14 +19,14 @@ public class StackRA<T> implements StackInterface{
 	/**
 	 * Assumes that the array is not empty & is full
 	 */
-	private void resize() {
+	private void resize() { // testing must reach 4 items in stack
 		int lenItems = items.length;
 		T[] temp = new T[lenItems*2];
 		System.arraycopy(items, 0, temp, 0, lenItems);
 		this.items = temp;
 	}
 
-	public void push(T newItem) {
+	public void push(T newItem) throws StackException{
 		if(top == items.length-1)
 			resize();
 		items[++top] = newItem;
