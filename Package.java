@@ -1,8 +1,12 @@
-public class Package {
-	private String name;
-	private double weight;
-	private int units;
+public class Package extends Sample {
+
+	private int amount;
 	private String sender;
 	private String receiver;
 	private boolean healthy;
+
+	public Package() {
+		
+	}
+
 }
