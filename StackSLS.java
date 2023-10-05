@@ -1,4 +1,4 @@
-public class StackSLS<T> implements StackInterface {
+public class StackSLS<T> implements StackInterface<T> {
 
 	Node<T> top;
 
@@ -26,7 +26,7 @@ public class StackSLS<T> implements StackInterface {
 		return item;
 	}
 
-	pubilc T peek() throws StackException{
+	public T peek() throws StackException{
 		if(top == null)
 			throw new StackException("pop(): stack is empty");
 		return top.getItem();

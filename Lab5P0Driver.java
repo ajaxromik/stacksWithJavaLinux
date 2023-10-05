@@ -11,13 +11,13 @@ import java.io.*;
  * @version: 2023.10.05
  */
 
-public class Lab4P1Driver {
+public class Lab5P0Driver {
     
     static BufferedReader stdin = new BufferedReader(new InputStreamReader(System.in));
 
     public static void main(String[] args) throws NumberFormatException, IOException {
 
-        StackRA myList = new StackRA();
+        StackRA<String> myStack = new StackRA<String>();
 
         System.out.println("Select from the following menu:\n"
                            +"\t0. Exit program\n"
@@ -37,19 +37,19 @@ public class Lab4P1Driver {
 
             switch(selection) {
             case 1:
-                pushItem(myList);
+                pushItem(myStack);
                 break;
             case 2:
-                popItem(myList);
+                popItem(myStack);
                 break;
             case 3:
-                topItem(myList);
+                topItem(myStack);
                 break;
             case 4:
-                printStack(myList);
+                printStack(myStack);
                 break;
             case 5:
-                clearStack(myList);
+                clearStack(myStack);
                 break;
             default: // continuing unless told to stop
                 continuing = false;
@@ -61,65 +61,50 @@ public class Lab4P1Driver {
 
     }
 
-    //TODO
-    public static void pushItem(StackInterface list) throws IOException{
+    public static void pushItem(StackInterface<String> stack) throws IOException{
         System.out.print("You are now inserting an item"+
-                         " into the list.\n\tEnter item: ");
+                         " onto the top of the stack.\n\tEnter item: ");
         String itemName = stdin.readLine().trim();
         System.out.println(itemName);
 
-        System.out.print("\tEnter position to insert item in: ");
-        int position = Integer.parseInt(stdin.readLine().trim());
-        System.out.println(position);
-        if(position < 0 || position > list.size())
-            System.out.println("Position specified is out of range!\n");
+        stack.push(itemName);
+        System.out.printf("Item %s inserted onto"+
+                          " the top of the stack.%n%n", itemName);
+    }
+
+    public static void popItem(StackInterface<String> stack) {
+        if(stack.isEmpty())
+            System.out.println("Stack is empty\n");
         else {
-            list.add(position, itemName);
-            System.out.printf("Item %s inserted into"+
-                              " position %d in the list.%n%n", itemName, position);
+            System.out.printf("Item %s popped from"+
+                              " the stack.%n%n", stack.pop());
         }
     }
 
-    //TODO
-    public static void popItem(StackInterface list) throws IOException{
-        System.out.print("\tEnter position to remove item from: ");
-        int position = Integer.parseInt(stdin.readLine().trim());
-        System.out.println(position);
-        if(position < 0 || position >= list.size())
-            System.out.println("Position specified is out of range!\n");
-        else {
-            System.out.printf("Item %s removed from"+
-                                " position %d in the list.%n%n", list.remove(position).toString(), position);
-        }
-    }
-
-    //TODO
-    public static void topItem(StackInterface list) throws IOException{
-        System.out.print("\tEnter position to retrieve item from: ");
-        int position = Integer.parseInt(stdin.readLine().trim());
-        System.out.println(position);
-        if(position < 0 || position >= list.size())
-            System.out.println("Position specified is out of range!\n");
+    public static void topItem(StackInterface<String> stack) {
+        if(stack.isEmpty())
+            System.out.println("Stack is empty\n\n");
         else {
             System.out.printf("Item %s retrieved from"+
-                              " position %d in the list.%n%n", list.get(position).toString(), position);
+                              " the top of the stack.%n%n", 
+                              stack.peek());
         }
     }
 
     /**
-     * Prints list after checking for null/empty
-     * @param list //TODO
+     * Prints stack after checking for null/empty
+     * @param stack
      */
-    public static void printStack(StackInterface list) {
-        if(list == null || list.size() == 0)
-            System.out.print("List is empty.\n");
+    public static void printStack(StackInterface<String> stack) {
+        if(stack == null || stack.isEmpty())
+            System.out.print("Stack is empty.\n\n");
         else
-            System.out.printf("List of size %d has the following items: %s%n",
-                              list.size(), list.toString());
+            System.out.printf("Stack has the following items: %s%n%n",
+                               stack.toString());
     }
 
-    public static void emptyList(StackInterface list) { // TODO
-        list.removeAll();
+    public static void clearStack(StackInterface<String> stack) {
+        stack.popAll();
         System.out.println();
     }
 

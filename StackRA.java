@@ -1,10 +1,10 @@
-public class StackRA<T> implements StackInterface{
+public class StackRA<T> implements StackInterface<T>{
 
 	private T[] items;
 	private int top;
 
 	public StackRA() {
-		items = new T[3]; //hand picked value of 3
+		items = (T[])new Object[3]; //hand picked value of 3
 		top = -1;
 	}
 
@@ -13,7 +13,8 @@ public class StackRA<T> implements StackInterface{
 	}
 
 	public void popAll() {
-		StackRA();
+		items = (T[])new Object[3]; //see StackRA()
+		top = -1;
 	}
 
 	/**
@@ -21,7 +22,7 @@ public class StackRA<T> implements StackInterface{
 	 */
 	private void resize() { // testing must reach 4 items in stack
 		int lenItems = items.length;
-		T[] temp = new T[lenItems*2];
+		T[] temp = (T[])new Object[lenItems*2];
 		System.arraycopy(items, 0, temp, 0, lenItems);
 		this.items = temp;
 	}
@@ -35,7 +36,7 @@ public class StackRA<T> implements StackInterface{
 	public T pop() throws StackException{
 		if(top == -1)
 			throw new StackException("pop(): stack is empty");
-		result = items[top];
+		T result = items[top];
 		items[top--] = null;
 		return result;
 	}
