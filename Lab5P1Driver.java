@@ -1,7 +1,7 @@
 import java.io.*;
 
 /*
- * Purpose: Data Structure and Algorithms Lab 5 Problem 0
+ * Purpose: Data Structure and Algorithms Lab 5 Problem 1
  * Status: Complete and thoroughly tested
  * Last update: 10/05/23
  * Submitted:  10/05/23
@@ -28,11 +28,11 @@ public class Lab5P1Driver {
         System.out.println(" --- "+args[0]+" ver. --- "
                            +"\nSelect from the following menu:\n"
                            +"\t0. Exit program\n"
-                           +"\t\t1. Push item onto the stack\n"
-                           +"\t\t2. Pop item from the stack\n"
-                           +"\t\t3. Display the top item of the stack\n"
-                           +"\t\t4. Display items in the stack\n"
-                           +"\t\t5. Clear the stack\n");
+                           +"\t1. Push item onto the stack\n"
+                           +"\t2. Pop item from the stack\n"
+                           +"\t3. Display the top item of the stack\n"
+                           +"\t4. Display items in the stack\n"
+                           +"\t5. Clear the stack\n");
 
         int selection;
         boolean continuing = true;
