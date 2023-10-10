@@ -35,7 +35,7 @@ public class Lab5P2Driver {
                            +"\t\t3. Display delivery bag info: number of packages, weight, and content\n"
                            +"\t\t4. Display samples bag info: number of samples, weight, and content\n"
                            +"\t\t5. Enjoy an item from samples bag\n"
-                           +"\t\t5. Enjoy all the samples in the samples bag\n");
+                           +"\t\t6. Enjoy all the samples in the samples bag\n");
 
         int selection;
         boolean continuing = true;
@@ -53,10 +53,10 @@ public class Lab5P2Driver {
                 dropOrder(deliveryBag, sampleBag);
                 break;
             case 3:
-                bagInfo("Delivery",deliveryBag);
+                bagInfo("Delivery", deliveryBag);
                 break;
             case 4:
-                bagInfo(sampleBag);
+                bagInfo("Sample", sampleBag);
                 break;
             case 5:
                 enjoySample(sampleBag);
@@ -132,7 +132,7 @@ public class Lab5P2Driver {
     }
 
     public static void dropOrder(Bag deliveryBag, Bag sampleBag) throws IOException{
-        if(deliveryBag.isEmpty())
+        if(deliveryBag.getUnits() == 0)
             System.out.println("No deliveries to process!\n\n");
         else {
             Package pop = (Package)deliveryBag.popItem();
@@ -150,31 +150,21 @@ public class Lab5P2Driver {
         }
     }
 
-    public static void topItem(Bag<String> stack) {
-        if(stack.isEmpty())
-            System.out.println("Stack is empty\n\n");
-        else {
-            System.out.printf("Item %s retrieved from"+
-                              " the top of the stack.%n%n", 
-                              stack.peek());
-        }
-    }
-
-    /**
-     * Prints stack after checking for null/empty
-     * @param stack
-     */
-    public static void printStack(Bag<String> stack) {
-        if(stack == null || stack.isEmpty())
-            System.out.print("Stack is empty.\n\n");
+    public static void bagInfo(String bagName, Bag bag) {
+        System.out.print(bagName+" bag has:  ");
+        if(bag.getUnits() == 0)
+            System.out.print("nothing.\n\n");
         else
-            System.out.printf("Stack has the following items: %s%n%n",
-                               stack.toString());
+            System.out.printf("%n%s%n%n",
+                               bag.toString());
     }
 
-    public static void clearStack(Bag<String> stack) {
-        stack.popAll();
-        System.out.println();
+    public static void enjoySample(Bag sampleBag) {
+        if()
+    }
+
+    public static void enjoyAllSamples(Bag sampleBag) {
+
     }
 
 }
