@@ -10,10 +10,6 @@ public class Bag<T> {
         this.collection = collection;
     }
 
-    public boolean isEmpty() {
-        return collection.isEmpty();
-    }
-
     public void setUnits(int units) {
         this.units = 0;
     }
@@ -40,11 +36,17 @@ public class Bag<T> {
 
     public void addItem(T item) {
         collection.push(item);
+        units++;
         totalWeight += ((Sample)item).getWeight();
     }
 
+    /**
+     * Make sure collection is not empty first
+     * @return
+     */
     public T popItem() {
         T item = collection.pop();
+        units--;
         totalWeight -= ((Sample)item).getWeight();
         return item;
     }
