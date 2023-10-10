@@ -131,12 +131,22 @@ public class Lab5P2Driver {
         }
     }
 
-    public static void dropOrder(Bag<String> stack) {
-        if(stack.isEmpty())
-            System.out.println("Stack is empty\n\n");
+    public static void dropOrder(Bag deliveryBag, Bag sampleBag) throws IOException{
+        if(deliveryBag.isEmpty())
+            System.out.println("No deliveries to process!\n\n");
         else {
-            System.out.printf("Item %s popped from"+
-                              " the stack.%n%n", stack.pop());
+            Package pop = (Package)deliveryBag.popItem();
+            System.out.printf("Here is your package %s. %n", pop.getReceiver());
+            System.out.print("May I please, please keep a sample(Y/N)? ");
+            char donated = 
+            (stdin.readLine().toUpperCase().trim().charAt(0));
+            System.out.println(donated);
+            System.out.printf("Your package contains: %s. %n");
+            if(donated == 'Y') {
+                System.out.println("Thanks for letting me keep a health bar! \n");
+                ((Bag<Sample>)sampleBag).addItem(new Sample(pop.getName(), pop.getWeight()));
+            }
+            System.out.println();
         }
     }
 
