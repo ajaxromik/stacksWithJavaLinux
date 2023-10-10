@@ -150,6 +150,11 @@ public class Lab5P2Driver {
         }
     }
 
+    /**
+     * prints the bag info with bagname as a header
+     * @param bagName
+     * @param bag   cannot be null
+     */
     public static void bagInfo(String bagName, Bag bag) {
         System.out.print(bagName+" bag has:  ");
         if(bag.getUnits() == 0)
@@ -160,11 +165,22 @@ public class Lab5P2Driver {
     }
 
     public static void enjoySample(Bag sampleBag) {
-        if()
+        if(sampleBag.getUnits() == 0)
+            System.out.println("no samples to enjoy!\n");
+        else
+            System.out.printf("This %s is amazing. I love free stuff!%n%n", ((Sample)sampleBag.popItem()).getName());
     }
 
     public static void enjoyAllSamples(Bag sampleBag) {
-
+        int units = sampleBag.getUnits();
+        if(units == 0) {
+            System.out.println("Sample bag is already empty.\n");
+        } else {
+            for(int i = 0; i < units; i++) {
+                System.out.println("Enjoying "+((Sample)sampleBag.popItem()).getName());
+            }
+            System.out.println("Sample bag has been emptied.\n");
+        }
     }
 
 }
