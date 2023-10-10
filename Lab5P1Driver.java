@@ -25,8 +25,7 @@ public class Lab5P1Driver {
             myStack = new StackRA<String>();
         }
 
-        System.out.println(" --- "+args[0]+" ver. --- "
-                           +"\nSelect from the following menu:\n"
+        System.out.println("\nSelect from the following menu:\n"
                            +"\t0. Exit program\n"
                            +"\t1. Push item onto the stack\n"
                            +"\t2. Pop item from the stack\n"
