@@ -10,6 +10,10 @@ public class Bag<T> {
         this.collection = collection;
     }
 
+    public boolean isEmpty() {
+        return collection.isEmpty();
+    }
+
     public void setUnits(int units) {
         this.units = 0;
     }
