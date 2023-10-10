@@ -17,22 +17,26 @@ public class Lab5P2Driver {
 
     public static void main(String[] args) throws NumberFormatException, IOException {
 
-        StackInterface<String> myStack;
+        StackInterface<Sample> myStack;
         try{
-            myStack = (StackInterface<String>)Class.forName(args[0]).newInstance();
+            myStack = (StackInterface<Sample>)Class.forName(args[0]).newInstance();
         }
         catch(Exception e) {
-            myStack = new StackRA<String>();
+            myStack = new StackRA<Sample>();
         }
+
+        Bag<Package> deliveryBag = new Bag(myStack); //TODO make sure this doesn't have them work on the same thing
+        Bag<Sample> sampleBag = new Bag(myStack); // i don't think it should since java passes by value
 
         System.out.println(" --- "+args[0]+" ver. --- "
                            +"\nSelect from the following menu:\n"
                            +"\t0. Exit program\n"
-                           +"\t\t1. Push item onto the stack\n"
-                           +"\t\t2. Pop item from the stack\n"
-                           +"\t\t3. Display the top item of the stack\n"
-                           +"\t\t4. Display items in the stack\n"
-                           +"\t\t5. Clear the stack\n");
+                           +"\t\t1. Pick up order\n"
+                           +"\t\t2. Drop off order\n"
+                           +"\t\t3. Display delivery bag info: number of packages, weight, and content\n"
+                           +"\t\t4. Display samples bag info: number of samples, weight, and content\n"
+                           +"\t\t5. Enjoy an item from samples bag\n"
+                           +"\t\t5. Enjoy all the samples in the samples bag\n");
 
         int selection;
         boolean continuing = true;
@@ -44,19 +48,22 @@ public class Lab5P2Driver {
 
             switch(selection) {
             case 1:
-                pushItem(myStack);
+                pushOrder(deliveryBag);
                 break;
             case 2:
-                popItem(myStack);
+                dropOrder(deliveryBag, sampleBag);
                 break;
             case 3:
-                topItem(myStack);
+                bagInfo(deliveryBag);
                 break;
             case 4:
-                printStack(myStack);
+                bagInfo(sampleBag);
                 break;
             case 5:
-                clearStack(myStack);
+                enjoySample(sampleBag);
+                break;
+            case 6:
+                enjoyAllSamples(sampleBag);
                 break;
             default: // continuing unless told to stop
                 continuing = false;
@@ -68,18 +75,30 @@ public class Lab5P2Driver {
 
     }
 
-    public static void pushItem(StackInterface<String> stack) throws IOException{
-        System.out.print("You are now inserting an item"+
-                         " onto the top of the stack.\n\tEnter item: ");
+    private static double readDouble(String prompt) {
+        System.out.print(prompt);
+        double inputDouble;
+        try {
+            inputDouble = Double.parseDouble(stdin.readLine().trim());
+            System.out.print(inputDouble);
+        } catch(Exception ex) {
+            inputDouble = 0;
+        }
+        return inputDouble;
+    }
+
+    public static void pushOrder(Bag<Sample> b) throws IOException{
+        System.out.print("Please specify package info: "+
+                         "\nitem name: ");
         String itemName = stdin.readLine().trim();
         System.out.println(itemName);
 
-        stack.push(itemName);
+        b.addItem(itemName);
         System.out.printf("Item %s inserted onto"+
                           " the top of the stack.%n%n", itemName);
     }
 
-    public static void popItem(StackInterface<String> stack) {
+    public static void dropOrder(Bag<String> stack) {
         if(stack.isEmpty())
             System.out.println("Stack is empty\n\n");
         else {
@@ -88,7 +107,7 @@ public class Lab5P2Driver {
         }
     }
 
-    public static void topItem(StackInterface<String> stack) {
+    public static void topItem(Bag<String> stack) {
         if(stack.isEmpty())
             System.out.println("Stack is empty\n\n");
         else {
@@ -102,7 +121,7 @@ public class Lab5P2Driver {
      * Prints stack after checking for null/empty
      * @param stack
      */
-    public static void printStack(StackInterface<String> stack) {
+    public static void printStack(Bag<String> stack) {
         if(stack == null || stack.isEmpty())
             System.out.print("Stack is empty.\n\n");
         else
@@ -110,7 +129,7 @@ public class Lab5P2Driver {
                                stack.toString());
     }
 
-    public static void clearStack(StackInterface<String> stack) {
+    public static void clearStack(Bag<String> stack) {
         stack.popAll();
         System.out.println();
     }
