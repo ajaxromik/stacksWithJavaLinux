@@ -15,7 +15,7 @@ public class Lab5P1Driver {
     
     static BufferedReader stdin = new BufferedReader(new InputStreamReader(System.in));
 
-    public static void main(String[] args) throws NumberFormatException, IOException {
+    public static void main(String[] args) throws NumberFormatException, IOException, InstantiationException, ClassNotFoundException, IllegalAccessException {
 
         StackInterface<String> myStack;
         try{
