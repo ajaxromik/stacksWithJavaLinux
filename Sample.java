@@ -29,7 +29,7 @@ public class Sample {
 	}
 
 	public String toString() {
-		return "\n"+name + " weighs " + weight + " lbs.";
+		return name + " weighs " + weight + " lbs.";
 	}
 
 }
