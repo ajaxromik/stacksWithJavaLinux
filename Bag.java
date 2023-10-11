@@ -52,9 +52,9 @@ public class Bag<T> {
     }
 
     public String toString() {
-        return String.format("Number of units: %d"
-                +"Weight: %.2f"
-                +"Items: %s",
+        return String.format("Number of units: %d%n"
+                +"Weight: %.2f%n"
+                +"Items: %s%n",
                 units, totalWeight, collection.toString());
     }
 
