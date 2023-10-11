@@ -17,16 +17,19 @@ public class Lab5P2Driver {
 
     public static void main(String[] args) throws NumberFormatException, IOException {
 
-        StackInterface<Sample> myStack;
+        StackInterface<Package> deliveryStack;
+        StackInterface<Sample> sampleStack;
         try{
-            myStack = (StackInterface<Sample>)Class.forName(args[0]).newInstance();
+            deliveryStack = (StackInterface<Package>)Class.forName(args[0]).newInstance();
+            sampleStack = (StackInterface<Sample>)Class.forName(args[0]).newInstance();
         }
         catch(Exception e) {
-            myStack = new StackRA<Sample>();
+            deliveryStack = new StackRA<>();
+            sampleStack = new StackRA<>();
         }
 
-        Bag<Package> deliveryBag = new Bag(myStack); //TODO make sure this doesn't have them work on the same thing
-        Bag<Sample> sampleBag = new Bag(myStack); // i don't think it should since java passes by value
+        Bag<Package> deliveryBag = new Bag<>(deliveryStack);
+        Bag<Sample> sampleBag = new Bag<>(sampleStack);
 
         System.out.println("\nSelect from the following menu:\n"
                            +"\t0. Exit program\n"
@@ -105,9 +108,9 @@ public class Lab5P2Driver {
         System.out.println(itemName);
 
         double itemWeight = readDouble("item weight: ");
-        int numItems = readInt("number of items: ");
+        int numItems = readInt("\nnumber of items: ");
 
-        System.out.print("is this a healthy item?(Y/N): ");
+        System.out.print("\nis this a healthy item?(Y/N): ");
         char healthy = 
         (stdin.readLine().toUpperCase().trim().charAt(0));
         System.out.println(healthy);
@@ -136,15 +139,22 @@ public class Lab5P2Driver {
             System.out.println("No deliveries to process!\n\n");
         else {
             Package pop = (Package)deliveryBag.popItem();
+            boolean healthy = pop.getHealthy();
+            char donated = 'n';
             System.out.printf("Here is your package %s. %n", pop.getReceiver());
-            System.out.print("May I please, please keep a sample(Y/N)? ");
-            char donated = 
-            (stdin.readLine().toUpperCase().trim().charAt(0));
-            System.out.println(donated);
-            System.out.printf("Your package contains: %s. %n");
-            if(donated == 'Y') {
-                System.out.println("Thanks for letting me keep a health bar! \n");
-                ((Bag<Sample>)sampleBag).addItem(new Sample(pop.getName(), pop.getWeight()));
+            if(healthy){
+                System.out.print("May I please, please keep a sample(Y/N)? ");
+                donated = 
+                (stdin.readLine().toUpperCase().trim().charAt(0));
+                System.out.println(donated);
+            }
+            System.out.printf("Your package contains: %s %n", pop);
+            if(healthy){
+                if(donated == 'Y') {
+                    System.out.println("Thanks for letting me keep a "+pop.getName()+"! \n");
+                    ((Bag<Sample>)sampleBag).addItem(new Sample(pop.getName(), pop.getUnitWeight()));
+                } else
+                    System.out.println("Thanks anyway.");
             }
             System.out.println();
         }
@@ -160,7 +170,7 @@ public class Lab5P2Driver {
         if(bag.getUnits() == 0)
             System.out.print("nothing.\n\n");
         else
-            System.out.printf("%n%s%n%n",
+            System.out.printf("%n%s%n",
                                bag.toString());
     }
 
