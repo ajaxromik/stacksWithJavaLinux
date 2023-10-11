@@ -36,7 +36,7 @@ public class Package extends Sample {
 	public String toString() {
 		return String.format("%d %ss, each weighing %.2f lbs"
 				+" from %s to %s", 
-				amount, super.getName(), sender, receiver);
+				amount, super.getName(), super.getWeight(), sender, receiver);
 	}
 
 }
