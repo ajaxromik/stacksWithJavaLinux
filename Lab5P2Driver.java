@@ -17,19 +17,8 @@ public class Lab5P2Driver {
 
     public static void main(String[] args) throws NumberFormatException, IOException {
 
-        StackInterface<Package> deliveryStack;
-        StackInterface<Sample> sampleStack;
-        try{
-            deliveryStack = (StackInterface<Package>)Class.forName(args[0]).newInstance();
-            sampleStack = (StackInterface<Sample>)Class.forName(args[0]).newInstance();
-        }
-        catch(Exception e) {
-            deliveryStack = new StackRA<>();
-            sampleStack = new StackRA<>();
-        }
-
-        Bag<Package> deliveryBag = new Bag<>(deliveryStack);
-        Bag<Sample> sampleBag = new Bag<>(sampleStack);
+        Bag<Package> deliveryBag = new Bag<>(args[0]);
+        Bag<Sample> sampleBag = new Bag<>(args[0]);
 
         System.out.println("\nSelect from the following menu:\n"
                            +"\t0. Exit program\n"

@@ -4,10 +4,16 @@ public class Bag<T> {
     private double totalWeight;
     private StackInterface<T> collection;
 
-    public Bag(StackInterface<T> collection) {
+    public Bag(String collectionType) {
         this.units = 0;
         this.totalWeight = 0;
-        this.collection = collection;
+        try{
+            this.collection = 
+                (StackInterface<T>)
+                Class.forName(collectionType).newInstance();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
     public void setUnits(int units) {
