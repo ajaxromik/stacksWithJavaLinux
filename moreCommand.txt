@@ -1,1 +1,0 @@
-more Lab5Status.txt Lab5Conclusions.txt Lab5P0Driver.java StackRA.java StackSLS.java Node.java StackInterface.java StackException.java Lab5P0Sampleruns.txt > allfiles.txt
